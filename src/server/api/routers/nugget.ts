@@ -21,11 +21,11 @@ async function mergeNuggets(nugget1: string, nugget2: string) {
       {
         role: "system",
         content:
-          "You are a helpful assistant that merges two texts of text_1 into text_2. Do not remove or add any content - combine where there is any overlap.",
+          "You are a text merging tool. Your only task is to merge text_1 and text_2 where there is overlap. If merging is not possible for any reason do not explain, apologize, or add any additional commentary. Never add new content beyond what exists in the original texts.",
       },
       {
         role: "user",
-        content: `nugget_1: ${nugget1}\n\nnugget_2: ${nugget2}`,
+        content: `text_1: ${nugget1}\n\ntext_2: ${nugget2}`,
       },
     ],
   });
