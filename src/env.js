@@ -8,8 +8,9 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    UPSTASH_VECTOR_DB_URL: z.string(),
-    UPSTASH_VECTOR_DB_TOKEN: z.string(),
+    UPSTASH_VECTOR_DB_URL: z.string().min(1),
+    UPSTASH_VECTOR_DB_TOKEN: z.string().min(1),
+    OPENAI_API_KEY: z.string().min(1),
   },
 
   /**
@@ -29,6 +30,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     UPSTASH_VECTOR_DB_URL: process.env.UPSTASH_VECTOR_DB_URL,
     UPSTASH_VECTOR_DB_TOKEN: process.env.UPSTASH_VECTOR_DB_TOKEN,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

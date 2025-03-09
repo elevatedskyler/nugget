@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 
 interface TextEditorProps {
-  initialContent?: string;
+  value: string;
+  setValue: (text: string) => void;
   onChange?: (text: string) => void;
   onSave?: (text: string) => void;
   nuggetId?: string;
@@ -13,40 +14,40 @@ interface TextEditorProps {
 }
 
 export const Editor = ({
-  initialContent = "",
+  value,
+  setValue,
   onChange,
   onSave,
   onClose,
   className = "",
   autoSaveDelay = 1500, // Default to 1.5 seconds
 }: TextEditorProps) => {
-  const [text, setText] = useState(initialContent);
-  const [lastSavedContent, setLastSavedContent] = useState(initialContent);
+  const [lastSavedContent, setLastSavedContent] = useState(value);
   const [isSaving, setIsSaving] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const autoSaveTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const saveContent = useCallback(() => {
-    if (!onSave || text === lastSavedContent) return;
+    if (!onSave || value === lastSavedContent) return;
 
     setIsSaving(true);
 
     // In a real app, you might want to handle async save operations
     void Promise.resolve()
       .then(() => {
-        onSave(text);
-        setLastSavedContent(text);
+        onSave(value);
+        setLastSavedContent(value);
       })
       .finally(() => {
         // Show saving indicator for at least 500ms for better UX
         setTimeout(() => setIsSaving(false), 500);
       });
-  }, [onSave, text, lastSavedContent]);
+  }, [onSave, value, lastSavedContent]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const content = e.target.value;
-      setText(content);
+      setValue(content);
       onChange?.(content);
 
       // Reset the timer on each change
@@ -61,7 +62,7 @@ export const Editor = ({
         }, autoSaveDelay);
       }
     },
-    [onChange, onSave, autoSaveDelay, saveContent],
+    [onChange, onSave, autoSaveDelay, saveContent, setValue],
   );
 
   const handleManualSave = useCallback(() => {
@@ -113,7 +114,7 @@ export const Editor = ({
       >
         <textarea
           ref={textareaRef}
-          value={text}
+          value={value}
           onChange={handleChange}
           className="h-full w-full resize-none border-none p-4 text-2xl outline-none focus:outline-none"
           placeholder="Start typing here..."

@@ -5,9 +5,9 @@ import { api, RouterOutputs } from "~/trpc/react";
 import NuggetPreview from "./NuggetPreview";
 
 export default function Nugget({
-  setSelectedNugget,
+  onClick,
 }: {
-  setSelectedNugget: (
+  onClick: (
     nugget: RouterOutputs["nugget"]["findSimilar"][number] | "create",
   ) => void;
 }) {
@@ -39,7 +39,7 @@ export default function Nugget({
           className="border-2 border-none border-slate-300 p-2 text-lg outline-none"
         />
         <button
-          onClick={() => setSelectedNugget("create")}
+          onClick={() => onClick("create")}
           className="h-full border-2 border-slate-300 bg-sky-100 p-2 text-lg outline-none"
         >
           Create
@@ -47,68 +47,28 @@ export default function Nugget({
       </div>
       <div className="divide-y-dashed grid h-full w-full grid-cols-4 grid-rows-2 divide-x divide-y divide-slate-200 bg-black">
         <div>
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(0)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(0)} />}
         </div>
         <div className="">
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(2)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(2)} />}
         </div>
         <div className="">
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(2)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(2)} />}
         </div>
         <div className="">
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(2)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(2)} />}
         </div>
         <div className="">
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(3)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(3)} />}
         </div>
         <div className="">
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(4)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(4)} />}
         </div>
         <div className="">
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(5)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(5)} />}
         </div>
         <div className="">
-          {
-            <NuggetPreview
-              setSelectedNugget={setSelectedNugget}
-              nugget={getNuggetContent(6)}
-            />
-          }
+          {<NuggetPreview onClick={onClick} nugget={getNuggetContent(6)} />}
         </div>
       </div>
     </div>

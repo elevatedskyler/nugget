@@ -1,14 +1,14 @@
+"use client";
+
 import type { Nugget } from "~/nugget";
 import { RouterOutputs } from "~/trpc/react";
 
 function NuggetPreview({
   nugget,
-  setSelectedNugget,
+  onClick,
 }: {
   nugget?: RouterOutputs["nugget"]["findSimilar"][number] | "loading" | null;
-  setSelectedNugget: (
-    nugget: RouterOutputs["nugget"]["findSimilar"][number],
-  ) => void;
+  onClick: (nugget: RouterOutputs["nugget"]["findSimilar"][number]) => void;
 }) {
   if (nugget === "loading") {
     return (
@@ -24,8 +24,10 @@ function NuggetPreview({
 
   return (
     <div
-      className={"h-full w-full bg-slate-50 p-4 hover:bg-white"}
-      onClick={() => setSelectedNugget(nugget)}
+      className={
+        "h-full w-full bg-slate-50 p-4 hover:cursor-pointer hover:bg-white"
+      }
+      onClick={() => onClick(nugget)}
     >
       {nugget.data}
     </div>
