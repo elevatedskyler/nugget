@@ -81,36 +81,42 @@ function EditorContainer({
     <div className="grid h-full w-full grid-cols-4 grid-rows-3 gap-4">
       <div className="col-start-1 row-start-1">
         <NuggetPreview
+          isMergable={true}
           onClick={() => handleMerge(similarNuggets?.[0])}
           nugget={similarNuggets?.[0]}
         />
       </div>
       <div className="col-start-1 row-start-2">
         <NuggetPreview
+          isMergable={true}
           onClick={() => handleMerge(similarNuggets?.[1])}
           nugget={similarNuggets?.[1]}
         />
       </div>
       <div className="col-start-1 row-start-3">
         <NuggetPreview
+          isMergable={true}
           onClick={() => handleMerge(similarNuggets?.[2])}
           nugget={similarNuggets?.[2]}
         />
       </div>
       <div className="col-start-4 row-start-1">
         <NuggetPreview
+          isMergable={true}
           onClick={() => handleMerge(similarNuggets?.[3])}
           nugget={similarNuggets?.[3]}
         />
       </div>
       <div className="col-start-4 row-start-2">
         <NuggetPreview
+          isMergable={true}
           onClick={() => handleMerge(similarNuggets?.[4])}
           nugget={similarNuggets?.[4]}
         />
       </div>
       <div className="col-start-4 row-start-3">
         <NuggetPreview
+          isMergable={true}
           onClick={() => handleMerge(similarNuggets?.[5])}
           nugget={similarNuggets?.[5]}
         />
